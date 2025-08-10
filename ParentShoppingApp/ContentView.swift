@@ -5,57 +5,70 @@
 //  Created by Manoj on 10/08/2025.
 //
 
+// import SwiftUI
+// import ShoppingListModule
+
+// struct ContentView: View {
+//     var body: some View {
+//         NavigationView {
+//             // ✅ NEW: SimpleShoppingListView automatically handles everything
+//             SimpleShoppingListView()
+//                 .navigationTitle("Shopping List")
+//                 .navigationBarTitleDisplayMode(.large)
+//         }
+//     }
+// }
+
 import SwiftUI
-import SwiftData
+import ShoppingListModule
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
     var body: some View {
-        NavigationSplitView {
+        NavigationStack {
             List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                Section("Select Approach") {
+                    NavigationLink("Simple (Module-provided)") {
+                        ApproachSimpleView()
+                            .navigationTitle("Simple")
                     }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    NavigationLink("Custom ViewModel (Programmatic)") {
+                        ApproachCustomViewModelView()
+                            .navigationTitle("Custom VM")
                     }
+                    NavigationLink("Tabbed App") {
+                        ApproachTabbedView()
+                            .navigationTitle("Tabbed")
+                    }
+                    NavigationLink("Embedded Header + List") {
+                        ApproachEmbeddedView()
+                            .navigationTitle("Embedded")
+                    }
+                    
                 }
             }
-        } detail: {
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
+            .navigationTitle("Shopping List Demos")
         }
     }
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+// Custom error view for this app
+struct ErrorDisplayView: View {
+    let error: Error
+    
+    var body: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "exclamationmark.triangle")
+                .font(.system(size: 48))
+                .foregroundColor(.red)
+            
+            Text("Error")
+                .font(.headline)
+            
+            Text(error.localizedDescription)
+                .font(.caption)
+                .multilineTextAlignment(.center)
+                .foregroundColor(.secondary)
+        }
+        .padding()
+    }
 }

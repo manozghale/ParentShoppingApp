@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E91190472E489E66002F2F12 /* ShoppingListModule in Frameworks */ = {isa = PBXBuildFile; productRef = E91190462E489E66002F2F12 /* ShoppingListModule */; };
+		E938BB2F2E48A3CD00252E26 /* ShoppingListModule in Frameworks */ = {isa = PBXBuildFile; productRef = E938BB2E2E48A3CD00252E26 /* ShoppingListModule */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		E94189DE2E4891D600C5D043 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E938BB2F2E48A3CD00252E26 /* ShoppingListModule in Frameworks */,
+				E91190472E489E66002F2F12 /* ShoppingListModule in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,8 @@
 			);
 			name = ParentShoppingApp;
 			packageProductDependencies = (
+				E91190462E489E66002F2F12 /* ShoppingListModule */,
+				E938BB2E2E48A3CD00252E26 /* ShoppingListModule */,
 			);
 			productName = ParentShoppingApp;
 			productReference = E94189CE2E4891D300C5D043 /* ParentShoppingApp.app */;
@@ -195,6 +204,9 @@
 			);
 			mainGroup = E94189C52E4891D300C5D043;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E938BB2D2E48A3CD00252E26 /* XCLocalSwiftPackageReference "../ShoppingListModule" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E94189CF2E4891D300C5D043 /* Products */;
 			projectDirPath = "";
@@ -550,6 +562,24 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		E938BB2D2E48A3CD00252E26 /* XCLocalSwiftPackageReference "../ShoppingListModule" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../ShoppingListModule;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E91190462E489E66002F2F12 /* ShoppingListModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ShoppingListModule;
+		};
+		E938BB2E2E48A3CD00252E26 /* ShoppingListModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ShoppingListModule;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E94189C62E4891D300C5D043 /* Project object */;
 }
