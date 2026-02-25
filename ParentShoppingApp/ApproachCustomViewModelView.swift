@@ -17,6 +17,7 @@ struct ApproachCustomViewModelView: View {
                             .disabled(viewModel.isSyncing)
                         }
                     }
+                    
             } else if let error = error {
                 ErrorDisplayView(error: error)
             } else {
@@ -29,7 +30,9 @@ struct ApproachCustomViewModelView: View {
     @MainActor
     private func loadViewModel() async {
         do {
-            let config = ShoppingListConfiguration.development
+            print("MainActor view model")
+            // let config = ShoppingListConfiguration.development
+            let config = ShoppingListConfiguration(apiBaseURL: nil, enableBackgroundSync: true, maxRetries: 3, isTestMode: false)
             viewModel = try await ShoppingListModule.createViewModel(configuration: config)
         } catch {
             self.error = error
